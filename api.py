@@ -150,7 +150,8 @@ async def upload_csv(file: UploadFile = File(...)):
         if not file.filename.lower().endswith(".csv"):
             raise HTTPException(status_code=400, detail="Only .csv files are supported")
 
-        uploads_dir = os.path.join("uploads")
+        # Use /tmp on Vercel (serverless is read-only except /tmp); fallback to local 'uploads'
+        uploads_dir = os.getenv("UPLOADS_DIR") or ("/tmp" if os.getenv("VERCEL") else "uploads")
         os.makedirs(uploads_dir, exist_ok=True)
         destination_path = os.path.join(uploads_dir, file.filename)
 
