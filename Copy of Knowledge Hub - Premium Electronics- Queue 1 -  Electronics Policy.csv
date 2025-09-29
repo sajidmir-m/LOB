@@ -1,0 +1,348 @@
+Nodes,Sub-type / VOC,Gold ,Silver & Bronze, New & Iron 
+"Expectation Mismatch
+
+Resolve under Issue type -  Expectation Mismatch
+Disposition: Issue with an order - Expectation Mismatch-Exchange/Return Request","SIZE
+
+VOC: 
+The size is too small/big
+
+","Verify if the image matches the product ordered by the customer
+
+Only if there is a discrepancy in the dimensions/information related to the size of the item, provide RPU.
+
+Otherwise, give Service No
+
+",,Service No
+,"QUALITY
+
+VOC:
+I don't like the quality of this product
+The sound quality is not good
+Seems fake/duplicate","Service No, refer to brand.
+
+
+Fake/Authenticity Concerns
+
+Canned Ressponse- We take product authenticity very seriously and work only with trusted sellers and authorized partners to ensure that all items meet our quality standards.",,"Service no, refer to brand."
+,"Colour
+
+VOC:
+I have received different color
+Incorrect color received","Verify if the image matches the product ordered by the customer
+
+
+Check the product description and the product packaging to check if the product delivered is correct, 
+
+Once confirmed, if the color displayed is same as delivered, Service No
+
+If the color displayed/mentioned does not match with delivered item, 
+
+Check for PO Eligible tag,
+If present, provide RPU.
+If the slot/stock is not available- Ask the cx to come back tomorrow between 9am to 6pm
+
+If tag is not present, politely give Service no.",,Service No
+,"Design
+
+VOC:
+I don't like the design
+I received a different pattern
+Assortment","Verify if the image matches the product ordered by the customer
+
+
+Check the product description and the product packaging to check if the product delivered is correct,
+
+ Once confirmed, if the design displayed is same as delivered, Service No
+
+If the design displayed/mentioned does not match with delivered item, 
+
+Check for PO Eligible tag,
+If present, provide RPU.
+If the slot/stock is not available- Ask the cx to come back tomorrow between 9am to 6pm
+ 
+If tag is not present, politely give Service no.
+",,Service No
+,"Other
+
+Not working as expected-
+e.g. 
+Not charging fast enough
+Logo missing
+Logo present
+Not cooling as per the expectation
+Not vibrating as per the expectation
+Not heating as per the expectation
+
+","Service No, refer to brand.",,"Service No, refer to brand."
+"Ordered by Mistake
+
+Resolve under Issue type -  Ordered by Mistake (Expectation Mismatch if Ord by mis is not visible)
+Disposition: Issue with an order - Issue with an order - Ordered by Mistake","1. Duplicate Order/Item/Payment got stuck
+2. Accidental Purchase (e.g., item added to cart and purchased unintentionally) 
+3. Selected the Wrong Quantity
+4. Ordered for the Wrong Address
+5. Customer thought the previous order was canceled but it wasn't
+6. Wanted to order different product - for ex - TWS instead of wired
+7. Wanted to order different variant/model
+8. Wanted to order different colour
+","Ask for a video of the product packaging from all sides.
+
+Item is Intact/Unopened
+Initiate an RPU.
+If the slot/stock is not available- Ask the cx to come back tomorrow between 9am to 6pm
+
+
+Item is Opened
+Politely give a Service no.
+
+Note- For single item prepaid & COD orders, proceed with a service no in case of accidental purchase.
+
+
+Resolve under Issue type -  Ordered by Mistake (Expectation Mismatch if Ord by mis is not visible)
+Disposition: Issue with an order - Issue with an order - Ordered by Mistake",,Service No
+,Other Reasons ,Service No,Service No,Service No
+The item(s) are physically damaged,,"Verify if the image matches the product ordered by the customer
+
+
+Verify image/ video 
+
+Replacement/ RPU as per cx preference
+
+Image/ video not verified: Deny
+
+Disposition: Issue with an order-Item/Freebie Damaged","Verify if the image matches the product ordered by the customer
+
+
+Verify the damage is visible in image/ video
+
+Item in Stock: Replacement only, 
+Item OOS: RPU
+
+If the damage is not visible in Image/ video: Deny
+
+Disposition: Issue with an order-Item/Freebie Damaged
+
+If the cx states that the product inside is old /used  
+
+Give Service No
+
+Canned Response-While we carefully verify all order packaging before dispatch, we regret to inform you that we are unable to offer a resolution in this case. Your understanding is appreciated.
+
+Note: This resolution applies regardless of whether the product’s seal is open or intact.
+","Verify if the image matches the product ordered by the customer
+
+
+Verify the damage in image/ video
+
+Item in Stock: Replacement only, 
+Item OOS: RPU
+
+If the damage is not visible in Image/ video: Deny
+
+Disposition: Issue with an order-Item/Freebie Damaged
+
+If the cx states that the product inside is old /used  
+
+Give Service No
+
+Canned Response-While we carefully verify all order packaging before dispatch, we regret to inform you that we are unable to offer a resolution in this case. You understanding is appreciated.
+
+Note: This resolution applies regardless of whether the product’s seal is open or intact.
+"
+The item(s) are not packed or sealed properly,,"Verify if the image matches the product ordered by the customer
+
+
+Verify image/ video 
+
+Replacement/ RPU as per cx preference
+
+Image/ video not verified: Deny
+
+Disposition: Issue with packaging-Packaging not Intact/Packaging Feedback","Verify if the image matches the product ordered by the customer
+
+
+Verify image/ video
+
+Item in Stock: Replacement only, 
+Item OOS: RPU
+
+Image/ video not verified: Deny
+
+Disposition: Issue with packaging-Packaging not Intact/Packaging Feedback
+
+","Verify if the image matches the product ordered by the customer
+
+
+Verify image/ video
+
+Item in Stock: Replacement only, 
+Item OOS: RPU
+
+Image/ video not verified: Deny
+
+Disposition: Issue with packaging-Packaging not Intact/Packaging Feedback"
+"The item(s) are missing
+
+",Follow the Missing Item Policy,,,
+"The item(s) are defective or not working/ Faulty
+-Not working properly
+-Audio issue
+-Connectivity issue","Basic Pre-requisites
+Check the following for verification:
+1- Show the product plugged into a power source.
+2- Attempt to use the product.
+3- Make sure the video is clear and continuous.         
+4- For all the concerns mentioned below, refer to the Troubleshooting guide below before providing a resolution.           
+Troubleshooting Guide- 
+Earbuds & Headsets                   
+Chargers & Cables   
+Troubleshooting Guide || Bluetooth Speakers
+Troubleshooting Guide for all premium electronic items                   ","Verify if the image matches the product ordered by the customer
+
+
+Perform basic checks through video to verify that the customer is using the selected item(s)
+Attempt to provide troubleshooting support over chat/ call
+Troubleshooting Guide: Mentioned above
+If troubleshooting is unsuccessful, 
+
+Pitch Replacement, RPU if the cx insists
+
+Disposition: Issue with an order-Item not working/defective","Verify if the image matches the product ordered by the customer
+
+
+Perform basic checks through video to verify that the customer is using the selected item(s)
+Attempt to provide troubleshooting support over chat/ call
+Troubleshooting Guide: Mentioned above
+If troubleshooting is unsuccessful, 
+
+Item in Stock: Replacement only, 
+Item OOS: RPU
+
+Disposition: Issue with an order-Item not working/defective","Verify if the image matches the product ordered by the customer
+
+
+Perform basic checks through video to verify that the customer is using the selected item(s)
+Attempt to provide troubleshooting support over chat/ call
+Troubleshooting Guide: Mentioned above
+If troubleshooting is unsuccessful, 
+
+Replacement ONLY 
+Ask the cx to come back the next day between 9AM-6PM if slot/stock is unavailable.
+
+If, as per SOP, the customer was asked to return the next day between 9am to 6pm due to unavailable stock/slot and they return:
+If the issue persists like the stock/slot are still not available, and the issue was validated proceed with resolution if the customer’s history is clean (no linked accounts, no suspicious customer or false claim tags are there).
+
+Disposition: Issue with an order-Item not working/defective"
+"Part(s) Missing 
+OR
+Different item received inside the box
+OR
+Empty Box received","Device box is there but the earbuds are missing
+Empty box - Earphones & Headsets missing inside the box
+One earbud is missing
+Charger/cable is missing from the box
+Manual missing is missing from the box
+Adapter missing is missing from the box
+
+
+
+","Verify if the image matches the product ordered by the customer
+
+If the item delivered is NOT same as ordered: Deny
+
+If the item delivered is same as ordered: 
+
+Check complaint history (part and missing item)
+0 - Replacement/RPU as per cx preference
+1 - Replacement only, If item is OOS- RPU
+2 or more -Replacement only, If item is OOS - Come back tomorrow between 9am to 6pm
+
+Disposition: Issue with an order-Parts missing/Empty box received","Verify if the image matches the product ordered by the customer
+
+If the item delivered is NOT same as ordered: Deny
+
+If the item delivered is same as ordered: 
+
+Check complaint history (part and missing item)
+0- Replacement only, If item is OOS- RPU
+1- Replacement only, If item is OOS - Come back tomorrow between 9am to 6pm
+2 or more - Service No
+
+Disposition: Issue with an order-Parts missing/Empty box received","Give Service No 
+
+Canned Response-While we carefully verify all order packaging before dispatch, we regret to inform you that we are unable to offer a resolution in this case. You understanding is appreciated.
+
+Note: If the customer is adamant or the case appears genuine,escalated it to the in-house team.
+
+Disposition: Issue with an order-Parts missing/Empty box received"
+"Wrong Item- Incorrect item received
+
+(The item(s) are not what I wanted)",If It is not a PDP mismatch issue then follow the wrong item policy.,"Scenario 1: If the wrong item is inside the correct packaging, follow the part missing policy
+
+Scenario 2: Completely Wrong Product Received
+
+Follow the steps below:
+Step 1: Search the product name along with Blinkit on Google to check if the item delivered is listed and sold on Blinkit.
+Step 2: If the delivered product is sold on Blinkit and can be validated through images shared by the cx that they have received a different item, proceed with a Replacement or RPU, as per the customer’s preference.
+If the delivered product is not sold on Blinkit, give Service No.
+
+
+Disposition: Issue with an order-Wrong Item","Scenario 1: If the wrong item is inside the correct packaging, follow the part missing policy
+
+Scenario 2: Completely Wrong Product Received
+
+Follow the steps below:
+Step 1: Search the product name along with Blinkit on Google to check if the item delivered is listed and sold on Blinkit.
+Step 2: If the delivered product is sold on Blinkit and can be validated through images shared by the cx that they have received a different item, proceed with a Replacement or RPU, as per the customer’s preference.
+If the delivered product is not sold on Blinkit, give Service No.
+
+
+Disposition: Issue with an order-Wrong Item","Scenario 1: If the wrong item is inside the correct packaging, follow the part missing policy
+
+Scenario 2: Completely Wrong Product Received
+
+Follow the steps below:
+Step 1: Search the product name along with Blinkit on Google to check if the item delivered is listed and sold on Blinkit.
+Step 2: If the delivered product is sold on Blinkit and can be validated through images shared by the cx that they have received a different item, proceed with a Replacement or RPU, as per the customer’s preference.
+If the delivered product is not sold on Blinkit, give Service No.
+
+
+Disposition: Issue with an order-Wrong Item"
+Compatibility Issues,,"If in video/image the item is intact/unopened:
+
+Initiate an RPU.
+If the slot/stock is not available- Ask the cx to come back tomorrow between 9am to 6pm.
+
+If the item is opened:
+Politely give Service No.",,Service No
+PDP Issues,"Information shown about a product is incorrect, incomplete, or misleading on website/app
+
+Examples of PDP issues:
+
+– Variance in MRP
+
+– Inaccurate product title 
+
+– Inaccurate dimensions/ specifications
+
+– Misleading product image
+
+– Missing key details (e.g., ingredients, compatibility- if applicable)
+
+– Features described do not match the actual product
+
+– Images not helpful (Comparative Sizing Not Available, No Lifestyle Images)
+","If the PDP title, images, and description matches the product, and another variant is available on Blinkit, treat it as an incorrect item received case and follow the Wrong Item Policy
+
+Step 1: Always verify the image shared by the customer first, then compare it with the image given on PDP (Blinkit website). 
+Step 2: Check if there is any mismatch in the product title/ image/ key features/ description
+Step 3: For any mismatch found, provide the appropriate resolution to the customer, as the issue arises from the PDP, not the product.
+
+Resolve this under Expectation Mismatch node on Lifeline, Disposition:  Issue with an order-PDP Issue
+
+Process RPU (If RPU SLOTS not available, ask the customer to check back next day between 9A.M.- 6P.M)
+
+NOTE: Customers often place orders based on the images shown on the PDP rather than reading the full description. If the images are not clear or intuitive, we can proceed with providing a resolution.
+
+",,

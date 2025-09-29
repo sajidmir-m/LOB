@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOB Summary Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .results-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .result-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .result-box h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .result-content {
+            white-space: pre-line;
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .csv-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin-bottom: 20px;
+        }
+
+        .csv-info h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .csv-info p {
+            color: #155724;
+            font-size: 14px;
+        }
+
+        .issue-types {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+        }
+
+        .issue-types h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .issue-types ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .issue-types li {
+            color: #856404;
+            padding: 5px 0;
+            border-bottom: 1px solid #ffeaa7;
+        }
+
+        .issue-types li:last-child {
+            border-bottom: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>LOB Summary Generator</h1>
+            <p>Generate Customer Support LOB summaries based on SOP rules and CSV knowledge base</p>
+        </div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <h2>Generate LOB Summary</h2>
+                
+                <form id="lobForm">
+                    <div class="form-group">
+                        <label for="issueType">Issue Type:</label>
+                        <select id="issueType" name="issueType" required>
+                            <option value="">Select an issue type...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="voc">Customer Statement (VOC):</label>
+                        <textarea id="voc" name="voc" placeholder="Enter customer's statement or voice of customer..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stockAvailable">Stock/Slot Available:</label>
+                        <select id="stockAvailable" name="stockAvailable" required>
+                            <option value="">Select availability...</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="followUpDate">Follow-up Date (Optional):</label>
+                        <input type="date" id="followUpDate" name="followUpDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dpSmCall">DP/SM Call (Optional):</label>
+                        <input type="text" id="dpSmCall" name="dpSmCall" placeholder="Leave empty for 'NA'">
+                    </div>
+
+                    <button type="submit" class="btn" id="generateBtn">Generate LOB Summary</button>
+                </form>
+            </div>
+
+            <div class="results-section">
+                <h2>Results</h2>
+                
+                <div id="csvInfo" class="csv-info" style="display: none;">
+                    <h4>CSV Knowledge Base Info</h4>
+                    <p id="csvInfoText"></p>
+                </div>
+
+                <div id="issueTypes" class="issue-types" style="display: none;">
+                    <h4>Available Issue Types</h4>
+                    <ul id="issueTypesList"></ul>
+                </div>
+
+                <div id="results">
+                    <div class="result-box">
+                        <h3>Generated LOB Summary</h3>
+                        <div class="result-content" id="lobSummary">
+                            Enter the required information and click "Generate LOB Summary" to see the result.
+                        </div>
+                    </div>
+
+                    <div class="result-box" id="csvValidation" style="display: none;">
+                        <h3>CSV-Based Validation</h3>
+                        <div class="result-content" id="csvValidationContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
