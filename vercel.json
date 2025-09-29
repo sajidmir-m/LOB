@@ -5,9 +5,8 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/index.py" },
-    { "src": "/(generate|issue-types|csv-info|validate.*)", "dest": "/api/index.py" },
-    { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/", "dest": "/static/index.html" }
+    { "src": "/(generate|issue-types|csv-info|validate.*|upload-csv)", "dest": "/api/index.py" },
+    { "src": "/", "dest": "/api/index.py" }
   ]
 }
 
