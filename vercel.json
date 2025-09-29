@@ -7,7 +7,7 @@
     { "src": "/api/(.*)", "dest": "/api/index.py" },
     { "src": "/(generate|issue-types|csv-info|validate.*)", "dest": "/api/index.py" },
     { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/", "dest": "/public/index.html" }
+    { "src": "/", "dest": "/static/index.html" }
   ]
 }
 
