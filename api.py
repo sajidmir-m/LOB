@@ -51,6 +51,7 @@ class GenerateRequest(BaseModel):
     stock_available: str | bool = Field(..., description="Yes/No or boolean")
     follow_up_date: str | None = Field(None, description="Optional follow up date")
     dp_sm_call: str | None = Field(None, description="Optional DP/SM call value; default NA")
+    tier: str | None = Field("Gold", description="Customer tier: Gold | Silver & Bronze | New & Iron")
 
 
 class GenerateResponse(BaseModel):
@@ -108,7 +109,7 @@ def generate(req: GenerateRequest) -> GenerateResponse:
         raise HTTPException(status_code=500, detail=f"Error generating LOB summary: {str(e)}")
 
 
-def get_csv_validation(issue_type: str, voc: str) -> Dict[str, Any]:
+def get_csv_validation(issue_type: str, voc: str, tier: str | None = None) -> Dict[str, Any]:
     """Get CSV-based validation and suggestions."""
     validation = {}
     
@@ -119,7 +120,8 @@ def get_csv_validation(issue_type: str, voc: str) -> Dict[str, Any]:
             validation["matched_issue_type"] = best_match
             
             # Get resolution for the matched issue type
-            resolution = csv_parser.get_resolution(best_match, "gold")
+            tier_key = _map_tier_to_key(tier or "Gold")
+            resolution = csv_parser.get_resolution(best_match, tier_key)
             validation["suggested_resolution"] = resolution
             
             # Get SOP details
@@ -146,7 +148,7 @@ def _normalize_yes_no(value: str | bool | None) -> str:
     return "Yes" if text in {"y", "yes", "true", "1"} else "No"
 
 
-def build_summary_from_csv(*, issue_type: str, voc: str, stock_available: str | bool, follow_up_date: str | None, dp_sm_call: str | None) -> str:
+def build_summary_from_csv(*, issue_type: str, voc: str, stock_available: str | bool, follow_up_date: str | None, dp_sm_call: str | None, tier: str | None) -> str:
     """Build the LOB summary strictly from CSV knowledge base.
 
     - Chooses the best matching issue type from CSV
@@ -166,9 +168,10 @@ def build_summary_from_csv(*, issue_type: str, voc: str, stock_available: str | 
 
         # Pull CSV-backed data
         sop_details = csv_parser.get_sop_details(matched_issue) if matched_issue else ""
-        # Default to Gold resolution. If not present, fallback chain.
+        # Select resolution by tier with fallbacks
+        tier_key = _map_tier_to_key(tier or "Gold")
         resolution = (
-            csv_parser.get_resolution(matched_issue, "gold") if matched_issue else ""
+            csv_parser.get_resolution(matched_issue, tier_key) if matched_issue else ""
         ) or (
             csv_parser.get_resolution(matched_issue, "silver_bronze") if matched_issue else ""
         ) or (
@@ -203,6 +206,18 @@ def build_summary_from_csv(*, issue_type: str, voc: str, stock_available: str | 
             follow_up_date=follow_up_date,
             dp_sm_call=dp_sm_call,
         )
+
+
+def _map_tier_to_key(tier_label: str) -> str:
+    label = (tier_label or "").strip().lower()
+    if label.startswith("gold"):
+        return "gold"
+    if label.startswith("silver") or "bronze" in label:
+        return "silver_bronze"
+    if label.startswith("new") or "iron" in label:
+        return "new_iron"
+    # default
+    return "gold"
 
 
 @app.get("/api/csv-info")
