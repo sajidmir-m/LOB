@@ -163,6 +163,7 @@ async function handleFormSubmit(event) {
             issue_type: formData.get('issueType'),
             voc: formData.get('voc'),
             stock_available: formData.get('stockAvailable'),
+            tier: formData.get('tier'),
             follow_up_date: formData.get('followUpDate') || null,
             dp_sm_call: formData.get('dpSmCall') || null
         };
