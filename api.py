@@ -88,8 +88,8 @@ def get_issue_types():
 def generate(req: GenerateRequest) -> GenerateResponse:
     """Generate LOB summary with CSV validation."""
     try:
-        # Generate the LOB summary
-        summary = generate_lob_summary(
+        # Prefer CSV-driven summary to avoid hallucinations
+        summary = build_summary_from_csv(
             issue_type=req.issue_type,
             voc=req.voc,
             stock_available=req.stock_available,
@@ -135,6 +135,74 @@ def get_csv_validation(issue_type: str, voc: str) -> Dict[str, Any]:
     except Exception as e:
         print(f"Error in CSV validation: {e}")
         return {}
+
+
+def _normalize_yes_no(value: str | bool | None) -> str:
+    if isinstance(value, bool):
+        return "Yes" if value else "No"
+    if value is None:
+        return "No"
+    text = str(value).strip().lower()
+    return "Yes" if text in {"y", "yes", "true", "1"} else "No"
+
+
+def build_summary_from_csv(*, issue_type: str, voc: str, stock_available: str | bool, follow_up_date: str | None, dp_sm_call: str | None) -> str:
+    """Build the LOB summary strictly from CSV knowledge base.
+
+    - Chooses the best matching issue type from CSV
+    - Pulls resolution text from CSV (Gold tier by default)
+    - Uses SOP details from CSV as the reason text
+    - Avoids heuristic wording to keep output grounded in CSV
+    """
+    try:
+        stock_yes_no = _normalize_yes_no(stock_available)
+
+        # Pick the most appropriate issue type from CSV
+        matched_issue = None
+        if issue_type in csv_parser.knowledge_base:
+            matched_issue = issue_type
+        else:
+            matched_issue = csv_parser.find_best_match(f"{issue_type} {voc}") or issue_type
+
+        # Pull CSV-backed data
+        sop_details = csv_parser.get_sop_details(matched_issue) if matched_issue else ""
+        # Default to Gold resolution. If not present, fallback chain.
+        resolution = (
+            csv_parser.get_resolution(matched_issue, "gold") if matched_issue else ""
+        ) or (
+            csv_parser.get_resolution(matched_issue, "silver_bronze") if matched_issue else ""
+        ) or (
+            csv_parser.get_resolution(matched_issue, "new_iron") if matched_issue else ""
+        ) or "Service No"
+
+        # Compose grounded summary
+        dp_sm_value = (dp_sm_call or "NA").strip() or "NA"
+        follow_value = str(follow_up_date).strip() if follow_up_date else "NA"
+
+        lines = [
+            f"Brief summary of customer concern: {matched_issue or issue_type}",
+            f"\nDP/SM call: {dp_sm_value}",
+            f"\nResolution shared along with the reason: {resolution if resolution else 'Service No'}",
+            f"\nStock/Slot Available: {stock_yes_no}",
+            f"\nOffered resolution: {resolution if resolution else 'Service No'}",
+            f"\nCustomer response: Pending",
+            f"\nFollow up – date and time: {follow_value}",
+        ]
+
+        # If we have SOP details, append them at the end to keep text CSV-grounded
+        if sop_details:
+            lines.insert(3, f"\nSOP Details: {sop_details}")
+
+        return "\n".join(lines)
+    except Exception:
+        # If anything fails, fall back to deterministic generator
+        return generate_lob_summary(
+            issue_type=issue_type,
+            voc=voc,
+            stock_available=stock_available,
+            follow_up_date=follow_up_date,
+            dp_sm_call=dp_sm_call,
+        )
 
 
 @app.get("/api/csv-info")
