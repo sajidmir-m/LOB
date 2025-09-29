@@ -10,14 +10,29 @@ from typing import Dict, Any, List
 
 app = FastAPI(title="LOB Summary Generator", version="1.0.0")
 
-# Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Mount static files using an absolute path so it works on serverless
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_STATIC_DIR = os.path.join(_BASE_DIR, "static")
+app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")
 
-# Initialize CSV parser (env override supported)
-csv_file_path = os.getenv(
+# Initialize CSV parser (env override supported) with robust path resolution
+def _resolve_csv_path(path: str) -> str:
+    # If absolute and exists, return
+    if os.path.isabs(path) and os.path.exists(path):
+        return path
+    # Try relative to CWD
+    if os.path.exists(path):
+        return os.path.abspath(path)
+    # Try relative to project base (next to api.py)
+    candidate = os.path.join(_BASE_DIR, path)
+    if os.path.exists(candidate):
+        return candidate
+    return path  # Let downstream raise helpful error
+
+csv_file_path = _resolve_csv_path(os.getenv(
     "CSV_FILE_PATH",
     "Copy of Knowledge Hub - Premium Electronics- Queue 1 -  Electronics Policy.csv",
-)
+))
 csv_parser = CSVParser(csv_file_path)
 
 
@@ -151,7 +166,7 @@ async def upload_csv(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="Only .csv files are supported")
 
         # Use /tmp on Vercel (serverless is read-only except /tmp); fallback to local 'uploads'
-        uploads_dir = os.getenv("UPLOADS_DIR") or ("/tmp" if os.getenv("VERCEL") else "uploads")
+        uploads_dir = os.getenv("UPLOADS_DIR") or ("/tmp" if os.getenv("VERCEL") else os.path.join(_BASE_DIR, "uploads"))
         os.makedirs(uploads_dir, exist_ok=True)
         destination_path = os.path.join(uploads_dir, file.filename)
 
