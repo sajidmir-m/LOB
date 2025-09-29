@@ -99,7 +99,7 @@ def generate(req: GenerateRequest) -> GenerateResponse:
         )
         
         # Get CSV validation data
-        csv_validation = get_csv_validation(req.issue_type, req.voc)
+        csv_validation = get_csv_validation(req.issue_type, req.voc, req.tier)
         
         return GenerateResponse(
             summary=summary,
